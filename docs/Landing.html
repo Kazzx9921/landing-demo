@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flux | The AI Social Translator for Creators</title>
+    
+    <!-- Google Fonts: Outfit (Display), Inter (Body), Playfair Display (Serif Accent) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Light weight, 1.5px stroke aesthetic) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration matching the Design System -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0F0F0F',
+                            charcoal: '#1F1F1F',
+                            blue: '#0099FF',
+                            white: '#FFFFFF',
+                            gray: '#999999',
+                            border: 'rgba(255, 255, 255, 0.15)',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    borderRadius: {
+                        '2xl': '24px',
+                        'pill': '999px'
+                    },
+                    spacing: {
+                        'xs': '8px',
+                        'sm': '20px',
+                    },
+                    fontSize: {
+                        'display-xl': ['clamp(3rem, 8vw, 6.875rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+                        'h1': ['clamp(2.5rem, 5vw, 3.625rem)', { lineHeight: '1.1' }],
+                        'h2': ['clamp(2rem, 4vw, 2.625rem)', { lineHeight: '1.2' }],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Resets & Transitions */
+        body {
+            background-color: #0F0F0F;
+            color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        ::selection {
+            background-color: #0099FF;
+            color: #FFFFFF;
+        }
+
+        /* Subtle Image Hover Zoom */
+        .bento-card:hover .bento-img {
+            transform: scale(1.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F0F0F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F1F1F;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-brand-blue selection:text-brand-white">
+
+    <!-- Navigation (Floating Pill) -->
+    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+        <div class="pointer-events-auto bg-brand-black/80 backdrop-blur-md border border-brand-border rounded-pill px-6 py-3 flex items-center justify-between w-full max-w-[1080px] transition-all duration-300">
+            <div class="flex items-center gap-2">
+                <i class="ph ph-hexagon font-display text-2xl text-brand-white"></i>
+                <span class="font-display font-medium text-lg tracking-wide">FLUX</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm text-brand-gray">
+                <a href="#features" class="hover:text-brand-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-md px-2">Features</a>
+                <a href="#workflow" class="hover:text-brand-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-md px-2">How it Works</a>
+                <a href="#analytics" class="hover:text-brand-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-md px-2">Analytics</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden md:block text-sm font-medium hover:text-brand-gray transition-colors focus:outline-none">Log in</a>
+                <a href="#" class="bg-brand-white text-brand-black px-5 py-2.5 rounded-pill text-[14px] font-medium hover:bg-brand-blue hover:text-brand-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 focus:ring-offset-brand-black">
+                    Start Free
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center px-4 pt-32 pb-20 text-center overflow-hidden">
+        <!-- Background Grid Element -->
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_10%,transparent_100%)] -z-10"></div>
+
+        <div class="max-w-[1080px] mx-auto flex flex-col items-center">
+            <div class="border border-brand-border rounded-pill px-4 py-1.5 mb-8 flex items-center gap-2 bg-brand-charcoal/50">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
+                </span>
+                <span class="text-xs font-medium uppercase tracking-widest text-brand-gray">The Context Engine</span>
+            </div>
+            
+            <h1 class="font-display text-display-xl font-medium mb-6 text-brand-white">
+                Write once. <br>
+                <span class="font-serif italic font-normal text-brand-gray">Resonate</span> everywhere.
+            </h1>
+            
+            <p class="text-lg md:text-[18px] text-brand-gray max-w-2xl leading-relaxed mb-10">
+                Stop wasting time manually rewriting and tracking. Transform a single idea into native, culturally-adapted posts for X, Threads, and Facebook in one click.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                <a href="#" class="w-full sm:w-auto bg-brand-white text-brand-black px-8 py-4 rounded-pill text-[16px] font-medium hover:bg-brand-blue hover:text-brand-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 focus:ring-offset-brand-black">
+                    Deploy Your First Post
+                </a>
+                <a href="#features" class="w-full sm:w-auto bg-transparent border border-brand-border text-brand-white px-8 py-4 rounded-pill text-[16px] font-medium hover:bg-brand-charcoal transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 focus:ring-offset-brand-black">
+                    Explore Architecture
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee / Platform Support -->
+    <div class="border-y border-brand-border bg-brand-charcoal/30 overflow-hidden py-6">
+        <div class="max-w-[1080px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <p class="text-sm font-medium text-brand-gray uppercase tracking-widest">Architected for native contexts</p>
+            <div class="flex items-center gap-12 text-brand-white opacity-50">
+                <div class="flex items-center gap-2"><i class="ph ph-x-logo text-2xl"></i><span class="font-display font-medium">X (Twitter)</span></div>
+                <div class="flex items-center gap-2"><i class="ph ph-threads-logo text-2xl"></i><span class="font-display font-medium">Threads</span></div>
+                <div class="flex items-center gap-2"><i class="ph ph-facebook-logo text-2xl"></i><span class="font-display font-medium">Facebook</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Problem & Solution (Bento Grid) -->
+    <section id="features" class="py-24 md:py-40 px-6">
+        <div class="max-w-[1080px] mx-auto">
+            
+            <div class="mb-16">
+                <h2 class="font-display text-h2 font-medium mb-4">Dumb pipelines are dead.<br>Enter the <span class="text-brand-blue">Social Translator</span>.</h2>
+                <p class="text-brand-gray text-lg max-w-xl">Traditional scheduling tools just blast the same rigid text everywhere. We built an AI that understands platform culture.</p>
+            </div>
+
+            <!-- Bento Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-sm auto-rows-[280px]">
+                
+                <!-- Card 1: Context is King (Spans 8 cols) -->
+                <div class="bento-card md:col-span-8 bg-brand-charcoal border border-brand-border rounded-2xl p-8 relative overflow-hidden group hover:border-brand-gray transition-colors duration-300 flex flex-col justify-end">
+                    <div class="absolute top-8 right-8 text-brand-border group-hover:text-brand-blue transition-colors duration-300">
+                        <i class="ph ph-translate text-4xl"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-display text-2xl font-medium mb-2">Contextual Adaptation Engine</h3>
+                        <p class="text-brand-gray text-base max-w-md">X demands sharp, analytical precision. Threads craves casual, everyday banter. Input your core thought once, and watch our engine rewrite it to fit the exact demographic of each platform.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: One-Click Publish (Spans 4 cols) -->
+                <div class="bento-card md:col-span-4 bg-brand-charcoal border border-brand-border rounded-2xl p-8 relative overflow-hidden group hover:border-brand-gray transition-colors duration-300 flex flex-col justify-end">
+                    <div class="absolute top-8 right-8 text-brand-border group-hover:text-brand-blue transition-colors duration-300">
+                        <i class="ph ph-paper-plane-tilt text-4xl"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-display text-2xl font-medium mb-2">Zero Friction</h3>
+                        <p class="text-brand-gray text-base">Review the AI-generated variants. Approve. Publish everywhere instantly.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Unified Analytics (Spans 12 cols, distinct layout) -->
+                <div id="analytics" class="bento-card md:col-span-12 bg-brand-charcoal border border-brand-border rounded-2xl p-8 relative overflow-hidden group hover:border-brand-gray transition-colors duration-300 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_right_bottom,rgba(0,153,255,0.05),transparent_50%)]"></div>
+                    
+                    <div class="relative z-10 max-w-lg">
+                        <div class="border border-brand-border rounded-pill px-3 py-1 text-xs uppercase tracking-wider text-brand-white inline-block mb-4 bg-brand-black">End Tab-Hopping</div>
+                        <h3 class="font-display text-3xl font-medium mb-3">Unified Telemetry</h3>
+                        <p class="text-brand-gray text-base">Stop switching between 3 different apps to check likes, retweets, and comments. We pull all engagement metrics into a single, beautifully structured dashboard.</p>
+                    </div>
+
+                    <!-- Abstract UI Mockup inside card -->
+                    <div class="relative z-10 w-full md:w-[400px] h-[160px] bg-brand-black border border-brand-border rounded-xl p-4 flex flex-col gap-3">
+                        <div class="flex items-center justify-between text-xs text-brand-gray border-b border-brand-border pb-2">
+                            <span>Post Performance</span>
+                            <span>Live</span>
+                        </div>
+                        <div class="flex items-end gap-2 h-full pt-2">
+                            <div class="w-1/3 bg-brand-charcoal rounded-t-md h-[40%] relative group-hover:h-[60%] transition-all duration-500 delay-75"><span class="absolute -top-6 text-xs w-full text-center hidden group-hover:block"><i class="ph-fill ph-threads-logo"></i></span></div>
+                            <div class="w-1/3 bg-brand-blue rounded-t-md h-[70%] relative group-hover:h-[90%] transition-all duration-500 delay-150"><span class="absolute -top-6 text-xs w-full text-center hidden group-hover:block"><i class="ph-fill ph-x-logo"></i></span></div>
+                            <div class="w-1/3 bg-brand-charcoal rounded-t-md h-[30%] relative group-hover:h-[50%] transition-all duration-500 delay-200"><span class="absolute -top-6 text-xs w-full text-center hidden group-hover:block"><i class="ph-fill ph-facebook-logo"></i></span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works (Linear Flow) -->
+    <section id="workflow" class="py-24 md:py-40 px-6 bg-brand-black border-y border-brand-border">
+        <div class="max-w-[1080px] mx-auto">
+            <div class="mb-20 text-center">
+                <h2 class="font-display text-h2 font-medium mb-4">The Pipeline.</h2>
+                <p class="text-brand-gray text-lg">A minimal upfront configuration for maximum cross-platform yield.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-sm relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-[28px] left-[10%] right-[10%] h-[1px] bg-brand-border z-0"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-brand-charcoal border border-brand-border flex items-center justify-center font-display text-xl mb-6 shadow-[0_0_0_8px_#0F0F0F]">1</div>
+                    <h4 class="font-display text-xl font-medium mb-2">The Raw Input</h4>
+                    <p class="text-brand-gray text-sm px-4">Draft your core idea, article, or shower thought in a distraction-free editor.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-brand-charcoal border border-brand-border flex items-center justify-center font-display text-xl mb-6 shadow-[0_0_0_8px_#0F0F0F]">2</div>
+                    <h4 class="font-display text-xl font-medium mb-2">AI Processing</h4>
+                    <p class="text-brand-gray text-sm px-4">Flux analyzes the text and spins up variants tailored to each platform's culture.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-brand-charcoal border border-brand-border flex items-center justify-center font-display text-xl mb-6 shadow-[0_0_0_8px_#0F0F0F]">3</div>
+                    <h4 class="font-display text-xl font-medium mb-2">Approval & Sync</h4>
+                    <p class="text-brand-gray text-sm px-4">Review the outputs. Edit if needed. Hit one button to distribute everywhere.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-brand-blue text-brand-white flex items-center justify-center font-display text-xl mb-6 shadow-[0_0_0_8px_#0F0F0F]"><i class="ph ph-chart-line-up"></i></div>
+                    <h4 class="font-display text-xl font-medium mb-2">Data Harvest</h4>
+                    <p class="text-brand-gray text-sm px-4">Watch unified performance metrics roll in automatically to your central dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-32 px-6 text-center">
+        <div class="max-w-[800px] mx-auto bg-brand-charcoal border border-brand-border rounded-[32px] p-12 md:p-20 relative overflow-hidden">
+            <!-- Glow effect -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(0,153,255,0.15),transparent_70%)] pointer-events-none"></div>
+            
+            <h2 class="font-display text-h1 font-medium mb-6 relative z-10">Stop managing platforms.<br>Start <span class="font-serif italic text-brand-gray">creating</span>.</h2>
+            <p class="text-brand-gray text-lg mb-10 relative z-10 max-w-md mx-auto">Join the elite creators who have automated their distribution layer and regained their focus.</p>
+            
+            <a href="#" class="inline-block relative z-10 bg-brand-white text-brand-black px-10 py-5 rounded-pill text-[16px] font-medium hover:bg-brand-blue hover:text-brand-white transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-brand-blue/30">
+                Start your 14-day free trial
+            </a>
+            <p class="mt-6 text-xs text-brand-gray uppercase tracking-widest relative z-10">No credit card required</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-brand-border pt-16 pb-8 px-6 bg-brand-black">
+        <div class="max-w-[1080px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16">
+            <div class="flex items-center gap-2">
+                <i class="ph ph-hexagon font-display text-3xl text-brand-white"></i>
+                <span class="font-display font-medium text-xl tracking-wide">FLUX</span>
+            </div>
+            
+            <div class="flex gap-8 text-sm">
+                <div class="flex flex-col gap-4">
+                    <p class="text-brand-white font-medium mb-2">Product</p>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Features</a>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Integrations</a>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Pricing</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <p class="text-brand-white font-medium mb-2">Resources</p>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Manifesto</a>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Changelog</a>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Support</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <p class="text-brand-white font-medium mb-2">Legal</p>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Privacy</a>
+                    <a href="#" class="text-brand-gray hover:text-brand-blue transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-[1080px] mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t border-brand-border/50 text-xs text-brand-gray">
+            <p>&copy; 2026 Flux Utility Corp. All rights reserved.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-brand-white transition-colors"><i class="ph ph-x-logo text-lg"></i></a>
+                <a href="#" class="hover:text-brand-white transition-colors"><i class="ph ph-github-logo text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
